@@ -1,15 +1,17 @@
-/* styles.css - replace your existing file with this */
-
-/* shared gradient so fallback can copy it */
 :root {
   --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-/* page layout */
-* { box-sizing: border-box; }
-html, body {
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
   height: 100%;
 }
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -25,7 +27,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* header */
+
 h1 {
   margin: 0 0 18px;
   font-size: 2.1rem;
@@ -33,23 +35,22 @@ h1 {
   letter-spacing: -0.02em;
 }
 
-/* Base "glass" look for the form and answer box.
-   Using the selectors you already have: form and .answer.
-   They both get the glass styling. */
-form, .answer {
-  position: relative;      /* needed for pseudo-element fallback */
-  z-index: 0;              /* create stacking context for ::before */
+
+form,
+.answer {
+  position: relative;
+  z-index: 0;
   border-radius: 12px;
   padding: 14px;
   width: min(720px, 92%);
   max-width: 720px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
   backdrop-clip: padding-box;
 }
 
-/* Input + button row styling */
+
 form {
   display: flex;
   gap: 12px;
@@ -58,8 +59,8 @@ form {
   padding: 16px;
 }
 
-/* Input field */
-input[type="text"]{
+
+input[type="text"] {
   flex: 1 1 auto;
   min-width: 0;
   padding: 12px 14px;
@@ -67,25 +68,35 @@ input[type="text"]{
   border: none;
   font-size: 1rem;
   outline: none;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
-/* Button */
+
 button {
   padding: 11px 18px;
   border-radius: 8px;
   border: none;
   font-weight: 700;
   cursor: pointer;
-  background: linear-gradient(180deg,#ff7eb3,#ff4d94);
+  background: linear-gradient(180deg, #ff7eb3, #ff4d94);
   color: #fff;
   transition: transform .15s ease, box-shadow .15s ease;
 }
-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 
-/* Answer specific tweaks */
-.aswerblock { margin-top: 20px; width: 100%; display: flex; justify-content: center; }
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.aswerblock {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .answer {
   margin-top: 6px;
   background-clip: padding-box;
@@ -96,25 +107,27 @@ button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.
   width: 100%;
 }
 
-/* --- Use native backdrop-filter where available --- */
+
 @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
-  form, .answer {
-    /* make the element translucent so backdrop-filter can blur what's behind it */
-    background-color: rgba(255,255,255,0.10);
+
+  form,
+  .answer {
+
+    background-color: rgba(255, 255, 255, 0.10);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
 }
 
-/* --- Fallback for browsers that DO NOT support backdrop-filter --- */
+
 @supports not ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
-  /* slightly more opaque so it still reads well */
-  form, .answer {
-    background-color: rgba(255,255,255,0.18);
+
+  form,
+  .answer {
+    background-color: rgba(255, 255, 255, 0.18);
   }
 
-  /* create a blurred copy of the page gradient behind the element:
-     this simulates the backdrop blur effect in older browsers */
+
   form::before,
   .answer::before {
     content: "";
@@ -122,20 +135,28 @@ button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    /* copy the same background (keeps colors in sync) */
+
     background: var(--bg-gradient);
     background-repeat: no-repeat;
     background-size: cover;
-    /* blur and slightly enlarge to avoid visible edges from blurring */
+
     filter: blur(12px);
     transform: scale(1.08);
     opacity: 0.95;
   }
 }
 
-/* small responsive tweaks */
+
 @media (max-width: 520px) {
-  h1 { font-size: 1.6rem; }
-  input[type="text"] { font-size: .95rem; }
-  button { padding: 10px 14px; }
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  input[type="text"] {
+    font-size: .95rem;
+  }
+
+  button {
+    padding: 10px 14px;
+  }
 }

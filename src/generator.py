@@ -11,7 +11,7 @@ class Generator:
         prompt = f"Question: {query}\nContext: {context}\nAnswer:"
 
         response = self.generator(prompt, max_length=max_length, clean_up_tokenization_spaces=True)
-        
+
         return response[0]["generated_text"]
 
 """
