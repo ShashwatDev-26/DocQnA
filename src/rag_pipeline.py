@@ -27,6 +27,7 @@ class RAGPipeline:
             print("[*] Initiating preprocessing..")
             print("[*] This may take time please wait...")
             self.preprocess()
+        print("[*] Pre-process ✅")
         self.retriever = Retriever()
         self.generator = Generator()
 
